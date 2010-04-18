@@ -560,7 +560,7 @@ local function styleFunc(self, unit)
   end
   if(unit == "player") then
     if(IsAddOnLoaded("oUF_Swing")) then      
-      local pcolor = UnitIsPlayer("player") and RAID_CLASS_COLORS[select(2, UnitClass("player"))]
+      local pcolor = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
       self.Swing = CreateFrame("StatusBar", nil, self)
       self.Swing:SetPoint("BOTTOM", self, "TOP", 0, 38)
       self.Swing:SetStatusBarTexture(texture)
