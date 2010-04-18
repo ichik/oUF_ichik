@@ -333,10 +333,7 @@ local function createAura(self, icon, icons, index, debuff)
 	icon.count:SetTextColor(0.8, 0.8, 0.8)
 	
 	icon.time = icon:CreateFontString(nil, 'OVERLAY')
-	if self:GetParent():GetName():match'oUF_Party' then
-		icon.time:SetFont(fontn, 12, 'THINOUTLINE') else
-		icon.time:SetFont(fontb, 14, 'THINOUTLINE')
-	end
+	icon.time:SetFont(fontb, 14, 'THINOUTLINE')
 	icon.time:SetPoint('BOTTOM', icon, 'TOP', 0, -8)
 	icon.time:SetJustifyH('CENTER')
 	icon.time:SetVertexColor(1.0,1.0,1.0)
@@ -352,7 +349,6 @@ end
 
 local function updateAura(self, icons, unit, icon, index, offset, filter, isDebuff, duration, timeLeft)
 	local _, _, _, _, _, duration, expirationTime, unitCaster, _ = UnitAura(unit, index, icon.filter)
-	icon.time:Hide()
 	if unitCaster == "player" or unitCaster == "pet" or unitCaster == "vehicle" then
 		if icon.debuff then
 				icon.icon:SetDesaturated(false)
@@ -367,19 +363,16 @@ local function updateAura(self, icons, unit, icon, index, offset, filter, isDebu
 
 	if duration and duration > 0 then
 		icon.time:Show()
+		icon.timeLeft = expirationTime
+		icon:SetScript("OnUpdate", CreateAuraTimer)
 	else
 		icon.time:Hide()
+		icon.timeLeft = math.huge
+		icon:SetScript('OnUpdate', nil)
 	end
 
-	icon.duration = duration
-	if expirationTime == 0 then
-	icon.timeLeft = math.huge else
-	icon.timeLeft = expirationTime
-	end
 	icon.first = true
-	icon:SetScript("OnUpdate", CreateAuraTimer)
 end
-
 
 local sort = function(a, b)
        return a.timeLeft > b.timeLeft
@@ -741,9 +734,9 @@ local function styleFunc(self, unit)
       self:SetAttribute('initial-width', width - 86)
       
       self.Health.Text2:Hide()
-      self.Auras:SetHeight(self.Health:GetHeight())
+      self.Auras:SetHeight(30)
       self.Auras:SetWidth(width - 86)
-      self.Auras.size = 18
+      self.Auras.size = 30
       self.Auras.buffFilter = "HELPFUL|RAID"
       self.Auras.numBuffs = 3
       self.Auras.numDebuffs = 3
