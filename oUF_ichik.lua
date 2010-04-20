@@ -734,7 +734,7 @@ local function styleFunc(self, unit)
       self:SetAttribute('initial-width', width - 86)
       
       self.Health.Text2:Hide()
-      self.Auras:SetHeight(30)
+      self.Auras:SetHeight(20)
       self.Auras:SetWidth(width - 86)
       self.Auras.size = 30
       self.Auras.buffFilter = "HELPFUL|RAID"
@@ -845,7 +845,7 @@ for i, v in ipairs(boss) do v:Show() end
 
 local party = oUF:Spawn("header", "oUF_Party")
 party:SetPoint("TOPRIGHT","oUF_ichik_pet", 0, 75)
-party:SetManyAttributes("showParty", true, "yOffset", 83, "showPlayer", false)
+party:SetManyAttributes("showParty", true, "yOffset", 103, "showPlayer", false)
 if ppets then
   party:SetAttribute("template", "oUF_ichikPPets")
 end
