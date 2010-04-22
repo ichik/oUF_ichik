@@ -210,24 +210,7 @@ end
   [GetSpellInfo(25771)] = true, -- Forbearance
   [GetSpellInfo(41425)] = true, -- Hypothermia
   [GetSpellInfo(69127)] = true, -- Chill of the Throne
-}]]
-local filter = {
-  ["Aufgespieﬂt"] = true, -- Impaled (Lord Marrowgar)
-  ["Fluch der Starre"] = true, -- Curse of Torpor (Lady Deathwhisper)
-  ["Mal des gefallenen Champions"] = true, -- Mark of the Fallen Champion (Deathbringer Saurfang)
-  ["Rune des Blutes"] = true, -- Rune of Blood (Deathbringer Saurfang)
-  ["Gasspore"] = true, -- Gas Spore (Festergut)
-  ["Mutierte Infektion"] = true, -- Mutated Infection (Rotface)
-  ["Pakt der Sinistren"] = true, -- Pact of the Darkfallen (Blood-Queen Lana'thel)
-  ["Schw\195\164rmende Schatten"] = true, -- Swarming Shadows (Blood-Queen Lana'thel)
-  ["Frostleuchtfeuer"] = true, -- Frost Beacon (Sindragosa)
-  ["Nekrotische Seuche"] = true, -- Necrotic Plague (Arthas)
-  ["Seele ernten"] = true, -- Harvest Soul (Arthas)
-  --["K\195\164lte des Thrones"] = true, -- testing
-  --["K\195\188rzlich bandagiert"] = true, -- testing
-  --["Seltsame Aura"] = true, -- Strange Aura (Zone-Debuff, just for testing)
-}
-
+}]]--
 local function CustomAuraFilter(icons, unit, icon, name)
   if blacklist then
     if(filter[name]) then return false else return true end
