@@ -186,7 +186,7 @@ local function OnLeave(self)
   self.Highlight:Hide()
 end
 
---[[local filter = {
+[local filter = {
   [GetSpellInfo(11196)] = true, -- Recently Bandaged
   [GetSpellInfo(6788)] = true, -- Weakened Soul
   [GetSpellInfo(57723)] = true, -- Exhaustion
@@ -210,7 +210,7 @@ end
   [GetSpellInfo(25771)] = true, -- Forbearance
   [GetSpellInfo(41425)] = true, -- Hypothermia
   [GetSpellInfo(69127)] = true, -- Chill of the Throne
-}]]--
+}
 local function CustomAuraFilter(icons, unit, icon, name)
   if blacklist then
     if(filter[name]) then return false else return true end
