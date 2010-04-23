@@ -725,7 +725,7 @@ local function styleFunc(self, unit)
       self.Auras.size = self.Auras:GetHeight()
       self.Auras.num = 5
       self.Auras.numBuffs = 0
-      self.Auras.numDebuffs = 2
+      self.Auras.numDebuffs = 5
       self.Auras.initialAnchor = "TOPRIGHT"
       self.Auras["growth-x"] = "LEFT"
     end    
