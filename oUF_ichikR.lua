@@ -7,8 +7,8 @@ local widthm, heightm = 120, 20
 
 local pname, prealm = UnitName("player"), GetRealmName()
 local playerClass = select(2, UnitClass("player"))
-local dfilter = false     -- true = filtering debuffs on raid and mt/ma. See blacklist
-local blacklist = false   -- true = debuffs in filterlist won't displayed // false = only debuffs in filterlist will displayed.
+local dfilter = true     -- true = filtering debuffs on raid and mt/ma. See blacklist
+local blacklist = true   -- true = debuffs in filterlist won't displayed // false = only debuffs in filterlist will displayed.
 						 -- See i.e. www.wowhead.com for spellIDs	
 local debuffTooltip = true -- true = tooltip of debuffs are shown
 
@@ -186,7 +186,7 @@ local function OnLeave(self)
   self.Highlight:Hide()
 end
 
-[local filter = {
+local filter = {
   [GetSpellInfo(11196)] = true, -- Recently Bandaged
   [GetSpellInfo(6788)] = true, -- Weakened Soul
   [GetSpellInfo(57723)] = true, -- Exhaustion
@@ -340,7 +340,7 @@ local function styleFunc(self, unit)
     
     self:SetAttribute('initial-height', heightm)
     self:SetAttribute('initial-width', widthm)
-    if not (self:GetAttribute('unitsuffix') and (self:GetAttribute('unitsuffix') == 'target' or self:GetAttribute('unitsuffix') == 'targettarget')) then
+    --[[if not (self:GetAttribute('unitsuffix') and (self:GetAttribute('unitsuffix') == 'target' or self:GetAttribute('unitsuffix') == 'targettarget')) then
       self.Auras = CreateFrame("Frame", nil, self)
       self.Auras:SetPoint("CENTER", self, "CENTER", 0, 0)
       self.Auras.gap = true
@@ -357,11 +357,8 @@ local function styleFunc(self, unit)
 
       self.PostCreateAuraIcon = PostCreateAuraIcon
       self.CustomAuraFilter = CustomAuraFilter
-    end    
+    end]]--    
   else  
-    if(IsAddOnLoaded("oUF_AuraWatch")) then
-      cR_createAuraWatch(self,unit)
-	end  
 	if(IsAddOnLoaded("oUF_RaidDebuffs")) then
 	  self.RaidDebuffs = CreateFrame('Frame', nil, self)
 	  self.RaidDebuffs:SetHeight(25)
