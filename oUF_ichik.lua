@@ -724,7 +724,7 @@ local function styleFunc(self, unit)
     end
     if(unit == "targettarget") then
       self.Auras:SetHeight(30)
-      self.Auras:SetWidth(width - 106)
+      self.Auras:SetWidth(width - 116)
       self.Auras.size = self.Auras:GetHeight()
       self.Auras.num = 5
       self.Auras.numBuffs = 0
