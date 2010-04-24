@@ -340,7 +340,7 @@ local function createAura(self, icon, icons, index, debuff)
 		
 	icons.showDebuffType = true
   
-	icon.icon:SetTexCoord(0.03, 0.97, 0.03, 0.97)
+	icon.icon:SetTexCoord(0.0, 1.0, 0.0, 1.0)
 	
 	icon.overlay:SetTexture(border)
 	icon.overlay:SetTexCoord(0.03, 0.97, 0.03, 0.97)
