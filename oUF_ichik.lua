@@ -710,10 +710,13 @@ local function styleFunc(self, unit)
       self.Power.colorPower = true
       self.Power.colorHappiness = true
       self.Power.colorReaction = false
+	  
       
-      self.Auras:SetHeight(self.Health:GetHeight())
-      self.Auras:SetWidth(width - 106)
-      self.Auras.size = self.Auras:GetHeight()
+      self.Auras:SetHeight(20)
+      self.Auras:SetWidth(width - 86)
+      self.Auras.size = 25
+      self.Auras.buffFilter = "HELPFUL|RAID"
+      self.Auras.num = 4
 
       self.CPoints = SetFontString(self.Health, fontn, 14, "THINOUTLINE")
       self.CPoints:SetPoint("LEFT", self.Health, 2, 0)
@@ -738,8 +741,7 @@ local function styleFunc(self, unit)
       self.Auras:SetWidth(width - 86)
       self.Auras.size = 30
       self.Auras.buffFilter = "HELPFUL|RAID"
-      self.Auras.numBuffs = 3
-      self.Auras.numDebuffs = 3
+      self.Auras.num = 4
       
       self.outsideRangeAlpha = 0.4
       self.inRangeAlpha = 1.0
