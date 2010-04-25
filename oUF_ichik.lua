@@ -741,7 +741,8 @@ local function styleFunc(self, unit)
       self.Auras:SetWidth(width - 86)
       self.Auras.size = 30
       self.Auras.buffFilter = "HELPFUL|RAID"
-      self.Auras.num = 4
+      self.Auras.numDebuffs = 4
+	  self.Auras.numBuffs = 1
       
       self.outsideRangeAlpha = 0.4
       self.inRangeAlpha = 1.0
