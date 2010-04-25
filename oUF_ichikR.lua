@@ -226,7 +226,7 @@ local function PostCreateAuraIcon(icons, button)
   button.cd:SetReverse()
   button.icon:SetTexCoord(0.0, 1.0, 0.0, 1.0)
   button.overlay:SetTexture(border)
-  button.overlay:SetTexCoord(0.03, 0.97, 0.03, 0.97)
+  button.overlay:SetTexCoord(0.0, 1.0, 0.0, 1.0)
   if (pcolor) then
     button.overlay.Hide = function(self) self:SetVertexColor(pcolor.r, pcolor.g, pcolor.b) end
   else 

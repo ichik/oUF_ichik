@@ -339,11 +339,10 @@ local function createAura(self, icon, icons, index, debuff)
 	icon.time:SetVertexColor(1.0,1.0,1.0)
 		
 	icons.showDebuffType = true
-  
-	icon.icon:SetTexCoord(0.0, 1.0, 0.0, 1.0)
+	icon.icon:SetTexCoord(0.0,1.0,0.0,1.0)  
 	
 	icon.overlay:SetTexture(border)
-	icon.overlay:SetTexCoord(0.03, 0.97, 0.03, 0.97)
+	icon.overlay:SetTexCoord(0.0, 1.0, 0.0, 1.0)
 	icon.overlay.Hide = function(self) self:SetVertexColor(0.3, 0.3, 0.3) end
 end
 
@@ -536,7 +535,7 @@ local function styleFunc(self, unit)
 				local ib = cb:CreateTexture(nil, 'OVERLAY')
 				ib:SetTexture(border)
 				ib:SetAllPoints(cbicon)
-				ib:SetTexCoord(0.03, 0.97, 0.03, 0.97)
+				ib:SetTexCoord(0.0, 1.0, 0.0, 1.0)
 				ib:SetVertexColor(0.3, 0.3, 0.3)
 				ib:SetBlendMode('BLEND')
 		cb.Icon = cbicon
