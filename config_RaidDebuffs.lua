@@ -28,9 +28,10 @@ local debuff_data = {
   71829, -- Dominate Mind (Lady Deathwhisper)
   72446, 72444, 72293, 72445, 72256, 72255, -- Mark of the Fallen Champion (Deathbringer Saurfang)
   72385, 72442, 72385, 72441, 72443, -- Boiling Blood (Deathbringer Saurfang)
-  70867, -- Bite (Blood-Queen Lana'thel)
+  70867, 71532, 71473, 71533,  71530, 70950, 70871, 71531, 71525, 70879, 70872, 70949-- Bite (Blood-Queen Lana'thel)
   70126, -- Frost Beacon (Sindragosa)
   68980, 74325, 74327, 74326, 68980, -- Harvest Soul (Arthas)
+  --25771, Fobearance (for testing)
 }  
 
 ORD:RegisterDebuffs(debuff_data)
