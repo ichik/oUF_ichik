@@ -381,6 +381,27 @@ local preAuraSetPosition = function(self, icon, max)
 	table.sort(icon, function(a,b) return a.timeLeft > b.timeLeft end)
 end
 
+local function updateAuraTrackerTime(self, elapsed)
+	if (self.active) then
+		self.timeleft = self.timeleft - elapsed
+
+		if (self.timeleft <= 5) then
+			self.text:SetTextColor(1,0,0)
+			self.atb:SetTexture(border)
+		else
+			self.text:SetTextColor(0.8,0.8,0.8)
+			self.atb:SetTexture(border)
+		end
+		
+		if (self.timeleft <= 0) then
+			self.icon:SetTexture("")
+			self.text:SetText("")
+			self.atb:SetTexture("")
+		end	
+		self.text:SetFormattedText("%.1f", self.timeleft)
+	end
+end
+
 local function styleFunc(self, unit)
   self.colors = colors
   self.menu = menu
@@ -785,6 +806,36 @@ local function styleFunc(self, unit)
 	-- optional flag to show overhealing
 	self.allowHealCommOverflow = true
   end
+  
+  if IsAddOnLoaded("oUF_AuraTracker") then
+		if(self:GetParent():GetName():match'oUF_Party' and self:GetAttribute('unitsuffix') ~= 'pet') then	
+		self.AuraTracker = CreateFrame("Frame", nil, self)
+		self.AuraTracker:SetHeight(50)		
+		self.AuraTracker:SetWidth(50)
+		self.AuraTracker:SetPoint("LEFT", self.Health.bg, "RIGHT", 0, 0)
+		self.AuraTracker:SetFrameStrata("HIGH")
+		
+		self.AuraTracker.icon = self.AuraTracker:CreateTexture(nil, "ARTWORK")
+		self.AuraTracker.icon:SetWidth(50)
+		self.AuraTracker.icon:SetHeight(50)
+		self.AuraTracker.icon:SetPoint("CENTER", self.AuraTracker, "CENTER", 0, 0)
+		self.AuraTracker.icon:SetTexCoord(0.0,1.0,0.0,1.0)
+		
+		self.AuraTracker.atb = self.AuraTracker:CreateTexture(nil, 'OVERLAY')
+		self.AuraTracker.atb:SetTexture("")
+		self.AuraTracker.atb:SetAllPoints(self.AuraTracker.icon)
+		self.AuraTracker.atb:SetTexCoord(0.0, 1.0, 0.0, 1.0)
+		self.AuraTracker.atb:SetVertexColor(0.3, 0.3, 0.3)
+		
+		self.AuraTracker.text = self.AuraTracker:CreateFontString(nil, "OVERLAY")
+		self.AuraTracker.text:SetFont(fontb, 14, 'THINOUTLINE')
+		self.AuraTracker.text:SetPoint('BOTTOM', self.AuraTracker.atb, 'TOP', 0, -8)
+		self.AuraTracker.text:SetJustifyH('CENTER')
+	
+		self.AuraTracker:SetScript("OnUpdate", updateAuraTrackerTime)
+		
+		end
+	end
 
   if(not (unit == "target" or self:GetParent():GetName():match'oUF_Party')) then
     self.ignoreHealComm = true

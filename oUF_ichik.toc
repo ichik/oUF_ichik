@@ -1,10 +1,10 @@
 ## Interface: 30300
 ## Author: ichik
-## Version: 0.25
+## Version: 0.3
 ## Title: oUF ichik
 ## Notes: oUF layout
 ## RequiredDeps: oUF
-## OptionalDeps:  oUF_DebuffHighlight, oUF_HealComm4, oUF_MoveableFrames, oUF_PowerSpark, oUF_RaidDebuffs, oUF_ReadyCheck, oUF_Smooth, oUF_Swing, oUF_WeaponEnchant
+## OptionalDeps:  oUF_AuraTracker, oUF_DebuffHighlight, oUF_HealComm4, oUF_MoveableFrames, oUF_PowerSpark, oUF_RaidDebuffs, oUF_ReadyCheck, oUF_Smooth, oUF_Swing, oUF_WeaponEnchant
 
 oUF_ichikPPets.xml
 oUF_ichikMt.xml
