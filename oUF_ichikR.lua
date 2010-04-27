@@ -366,13 +366,13 @@ local function styleFunc(self, unit)
 	  self.RaidDebuffs:SetPoint('CENTER', self, "CENTER",0,1)
 	  self.RaidDebuffs:SetFrameStrata'HIGH'
 	
-	  self.RaidDebuffs.icon = self.RaidDebuffs:CreateTexture(nil, 'OVERLAY')
+	  self.RaidDebuffs.icon = self.RaidDebuffs:CreateTexture(nil, 'ARTWORK')
 	  self.RaidDebuffs.icon:SetTexCoord(0.0,1.0,0.0,1.0)
 	  self.RaidDebuffs.icon:SetAllPoints(self.RaidDebuffs)
 	  
 	  self.RaidDebuffs.overlay = self.RaidDebuffs:CreateTexture(nil, "OVERLAY")
 	  self.RaidDebuffs.overlay:SetAllPoints(self.RaidDebuffs)
-	  self.RaidDebuffs.overlay:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+	  self.RaidDebuffs.overlay:SetTexCoord(0.0,1.0, 0.0, 1.0)
 	  self.RaidDebuffs.overlay:SetTexture(border)
     else
 	  if dfilter then
