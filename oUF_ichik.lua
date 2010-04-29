@@ -888,7 +888,7 @@ for i = 1, MAX_BOSS_FRAMES do
 	boss[i] = oUF:Spawn("boss"..i, "oUF_Boss"..i)
 
 	if i == 1 then
-		boss[i]:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 15, -215)
+		boss[i]:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 15, -235)
 	else
 		boss[i]:SetPoint("TOP", boss[i-1], "BOTTOM", 0, -5)
 	end
