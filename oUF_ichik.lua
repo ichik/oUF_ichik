@@ -399,6 +399,8 @@ local function updateAuraTrackerTime(self, elapsed)
 			self.atb:SetTexture("")
 		end	
 		self.text:SetFormattedText("%.1f", self.timeleft)
+	else
+		self.atb:SetTexture("")
 	end
 end
 
