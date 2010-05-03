@@ -1,6 +1,6 @@
 ## Interface: 30300
 ## Author: ichik
-## Version: 0.41
+## Version: 0.41a
 ## Title: oUF ichik
 ## Notes: oUF layout
 ## RequiredDeps: oUF
