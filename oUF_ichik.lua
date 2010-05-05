@@ -604,15 +604,6 @@ local function styleFunc(self, unit)
       self.Swing.bg:SetAllPoints(self.Swing)
       self.Swing.bg:SetTexture(0.4, 0.4, 0.4)        
     end
-	if(IsAddOnLoaded("oUF_PowerSpark")) then
-	  self.Spark = self.Power:CreateTexture(nil, "OVERLAY")
-	  self.Spark:SetTexture("Interface\\CastingBar\\UI-CastingBar-Spark")
-	  self.Spark:SetVertexColor(1, 1, 1, 1)
-	  self.Spark:SetBlendMode("ADD")
-	  self.Spark:SetHeight(self.Power:GetHeight()*2)
-	  self.Spark:SetWidth(4)
-	  self.Spark = spark
-	end
     if(class == "DRUID") then
       self.DruidPower = CreateFrame('StatusBar', nil, self)
       self.DruidPower:SetPoint('TOP', self.Health, 'BOTTOM')
