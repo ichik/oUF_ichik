@@ -78,67 +78,6 @@ local colors = setmetatable({
   }, {__index = oUF.colors.power}),
 }, {__index = oUF.colors})
 	
--- buff indicators - Credits to roth (oUF D3OrbsRaid) and Astromech (oUF AuraWatch)
-local function cR_createAuraWatch(self,unit)
-  local auras = CreateFrame("Frame", nil, self)
-  auras:SetAllPoints(self.Health)
-  --auras:SetFrameStrata("HIGH")
-  local spellIDs = { 
-    47440, -- Commanding Shout
-    47436, -- Battle Shout
-    59665, -- Vigilance
-  }
-    
-  auras.presentAlpha = 1
-  auras.missingAlpha = 0
-  --auras.hideCooldown = true
-  --auras.PostCreateIcon = createAuraIcon
-  auras.icons = {}
-   
-  for i, sid in pairs(spellIDs) do
-    local icon = CreateFrame("Frame", nil, auras)
-    icon.spellID = sid
-    local cd = CreateFrame("Cooldown", nil, icon)
-    cd:SetAllPoints(icon)
-    cd:SetReverse()
-    --cd:SetAlpha(0)
-    icon.cd = cd
-    if i > 4 then
-      icon.anyUnit = true
-      icon:SetWidth(20)
-      icon:SetHeight(20)
-      icon:SetPoint("CENTER",0,0)
-    else
-      icon:SetWidth(7)
-      icon:SetHeight(7)
-      local tex = icon:CreateTexture(nil, "BACKGROUND")
-      tex:SetAllPoints(icon)
-      tex:SetTexture([=[Interface\AddOns\oUF_ichik\media\indicator]=])
-      if i == 1 then
-        icon:SetPoint("BOTTOMLEFT",0,0)
-        tex:SetVertexColor(200/255,100/255,200/255)
-      elseif i == 2 then
-        icon:SetPoint("BOTTOMLEFT",0,0)
-        tex:SetVertexColor(200/255,100/255,200/255)
-      elseif i == 3 then 
-        icon:SetPoint("BOTTOMRIGHT",0,0)
-        tex:SetVertexColor(50/255,200/255,50/255)
-        --[[local count = icon:CreateFontString(nil, "OVERLAY")
-        count:SetFont(NAMEPLATE_FONT,10,"THINOUTLINE")
-        count:SetPoint("CENTER", -6, 0)
-        --count:SetAlpha(0)
-        icon.count = count]]
-      elseif i == 4 then
-        icon:SetPoint("BOTTOMRIGHT",0,0)
-        tex:SetVertexColor(200/255,100/255,0/255)
-      end
-      icon.icon = tex
-    end  
-    auras.icons[sid] = icon
-  end
-  self.AuraWatch = auras
-end
-
 local function updateRIcon(self, event)
   local index = GetRaidTargetIndex(self.unit)
   if(index) then
@@ -381,8 +320,8 @@ local function styleFunc(self, unit)
         self.Debuffs.showDebuffType = true  
         self.Debuffs.num = 2
         self.Debuffs.initialAnchor = "BOTTOMLEFT"
-        self.Debuffs:SetHeight(20)
-        self.Debuffs:SetWidth(20)
+        self.Debuffs:SetHeight(25)
+        self.Debuffs:SetWidth(25)
         self.Debuffs.size = self.Debuffs:GetHeight()  
         self.Debuffs.disableCooldown = 1
 
