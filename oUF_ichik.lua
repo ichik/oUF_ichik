@@ -516,8 +516,8 @@ local function styleFunc(self, unit)
   if(cbar == true and (unit == "player" or unit == "target" or unit == "focus" or unit == "pet")) then
     do
       local cb = CreateFrame("StatusBar", nil, self)
-      cb:SetPoint("TOPRIGHT", self, "BOTTOMRIGHT", 0, -21)
-      cb:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 0, -21)
+      cb:SetPoint("TOPRIGHT", self, "BOTTOMRIGHT", 0, -20)
+      cb:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 0, -20)
       if (unit == "focus") then    
         cb:SetPoint("TOPRIGHT", self, "BOTTOMRIGHT", 0, -12)
 		cb:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 0, -12)
@@ -696,7 +696,7 @@ local function styleFunc(self, unit)
   end
 	if (unit == "player" or unit == "target" or unit == "pet" or unit == "targettarget" or self:GetParent():GetName():match'oUF_Party') then
     self.Auras = CreateFrame("Frame", nil, self)
-    self.Auras:SetPoint("BOTTOMLEFT", self, "TOPLEFT", -1, 5)
+    self.Auras:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 5)
     self.Auras.gap = false
     self.Auras.showDebuffType = true  
     self.Auras.spacing = 1
