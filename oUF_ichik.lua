@@ -145,7 +145,6 @@ local function updateRIcon(self, event)
 end
 
 local function playerVehicle(self, event, unit)
-  if self.unit ~= unit then return end
   if event == "UNIT_ENTERED_VEHICLE" then
     self.Info:Show()
   elseif event == "UNIT_EXITED_VEHICLE" then
