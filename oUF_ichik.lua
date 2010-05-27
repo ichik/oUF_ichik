@@ -144,8 +144,8 @@ local function updateRIcon(self, event)
   end
 end
 
-local function playerVehicle(self, event)
-  if event == "UNIT_ENTERED_VEHICLE" then
+local function playerVehicle(self, event, unit)
+  if event == "UNIT_ENTERED_VEHICLE" and self.unit == unit then
     self.Info:Show()
   elseif event == "UNIT_EXITED_VEHICLE" then
     self.Info:Hide()
@@ -499,8 +499,10 @@ local function styleFunc(self, unit)
 	self.Info:Hide()  
 	self:RegisterEvent("UNIT_ENTERED_VEHICLE", playerVehicle)
 	self:RegisterEvent("UNIT_EXITED_VEHICLE", playerVehicle)
-  elseif(unit == "targettarget" or unit == "pet") then
-    self.Info:SetPoint("RIGHT", self.Health.Text2, "LEFT")
+  elseif(unit == "pet") then
+  self.Info:Hide()
+  elseif(unit == "targettarget") then
+    self.Info:SetPoint("RIGHT", self.Health.Text2, "LEFT")	
   elseif(unit == "focus" or unit == "focustarget" or (unit and unit:match("boss%d"))) then    
     self.Info:SetPoint("LEFT", self.Health, 3, 0)
     self.Info:SetPoint("RIGHT", self.Health)
