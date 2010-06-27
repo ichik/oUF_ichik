@@ -1,4 +1,3 @@
-local _, class = UnitClass("player")
 local texture = [=[Interface\AddOns\oUF_ichik\media\minimalist]=]
 local debufftex = [=[Interface\AddOns\oUF_ichik\media\dh]=]
 local border = [=[Interface\AddOns\oUF_ichik\media\border]=]
@@ -56,29 +55,29 @@ local function Hex(r, g, b)
 end
 
 -- [[ Tags, credits to Coree ]]
-oUF.Tags["[ichikdiff]"]  = function(u) local l = UnitLevel(u); return Hex(GetQuestDifficultyColor((l > 0) and l or 99)) end
-oUF.TagEvents["[ichikselect]"] = oUF.TagEvents["[pvp]"]
-oUF.Tags["[ichikselect]"] = function(u) local c = colors.reaction[UnitReaction(u, "player")] return Hex(c[1],c[2],c[3]) end
-oUF.Tags["[ichikcolor]"] = function(u)
-  return   ((UnitIsFriend("player", "target") and UnitPlayerControlled("target")) or not UnitIsConnected(u)) and oUF.Tags["[raidcolor]"](u) or
-      (not UnitIsFriend("player", "target") and UnitPlayerControlled("target")) and oUF.Tags["[ichikselect]"](u) or 
-      oUF.Tags["[ichikdiff]"](u)
+oUF.Tags['ichikdiff']  = function(u) local l = UnitLevel(u); return Hex(GetQuestDifficultyColor((l > 0) and l or 99)) end
+oUF.TagEvents['ichikselect'] = oUF.TagEvents['pvp']
+oUF.Tags['ichikselect'] = function(u) local c = colors.reaction[UnitReaction(u, "player")] return Hex(c[1],c[2],c[3]) end
+oUF.Tags['ichikcolor'] = function(u)
+  return   ((UnitIsFriend("player", "target") and UnitPlayerControlled("target")) or not UnitIsConnected(u)) and oUF.Tags['raidcolor'](u) or
+      (not UnitIsFriend("player", "target") and UnitPlayerControlled("target")) and oUF.Tags['ichikselect'](u) or 
+      oUF.Tags['ichikdiff'](u)
 end
-oUF.TagEvents["[ichikclassi]"] = oUF.TagEvents["[classification]"]
-oUF.Tags["[ichikclassi]"] = function(u)
+oUF.TagEvents['ichikclassi'] = oUF.TagEvents['classification']
+oUF.Tags['ichikclassi'] = function(u)
   local c = UnitClassification(u);
   return c == "rare" and "Rare" or c == "rareelite" and "+ Rare" or c == "elite" and "+" or c == "worldboss" and "Boss" or ""
 end
-oUF.TagEvents["[ichikafk]"] = "PLAYER_FLAGS_CHANGED"
-oUF.Tags["[ichikafk]"] = function(u) return UnitIsAFK(u) and "<AFK> " or "" end
-oUF.TagEvents["[ichikhpp]"] = oUF.TagEvents["[curhp]"]
-oUF.Tags["[ichikhpp]"] = function(u)
-  return  (not UnitIsConnected(u)) and oUF.Tags["[offline]"](u) or
+oUF.TagEvents['ichikafk'] = "PLAYER_FLAGS_CHANGED"
+oUF.Tags['ichikafk'] = function(u) return UnitIsAFK(u) and "<AFK> " or "" end
+oUF.TagEvents['ichikhpp'] = oUF.TagEvents['curhp']
+oUF.Tags['ichikhpp'] = function(u)
+  return  (not UnitIsConnected(u)) and oUF.Tags['offline'](u) or
       UnitIsDead(u) and "Dead" or
-      UnitIsGhost(u) and "Ghost" or oUF.Tags["[curhp]"](u)
+      UnitIsGhost(u) and "Ghost" or oUF.Tags['curhp'](u)
 end
-oUF.TagEvents["[ichikhp]"] = "UNIT_HEALTH UNIT_MANA UNIT_RAGE UNIT_ENERGY UNIT_RUNIC_POWER UNIT_MAXMANA UNIT_MAXRAGE UNIT_MAXENERGY UNIT_DISPLAYPOWER UNIT_MAXRUNIC_POWER PLAYER_REGEN_ENABLED PLAYER_REGEN_DISABLED"
-oUF.Tags["[ichikhp]"] = function(u)
+oUF.TagEvents['ichikhp'] = "UNIT_HEALTH UNIT_MANA UNIT_RAGE UNIT_ENERGY UNIT_RUNIC_POWER UNIT_MAXMANA UNIT_MAXRAGE UNIT_MAXENERGY UNIT_DISPLAYPOWER UNIT_MAXRUNIC_POWER PLAYER_REGEN_ENABLED PLAYER_REGEN_DISABLED"
+oUF.Tags['ichikhp'] = function(u)
   local min, max, ma = UnitHealth(u), UnitHealthMax(u), UnitMana("player")
   local combat = UnitAffectingCombat("player")
   return   (not UnitIsConnected(u) and "Offline") or (UnitIsDead(u) and "Dead") or (UnitIsGhost(u) and "Ghost")
@@ -87,16 +86,16 @@ oUF.Tags["[ichikhp]"] = function(u)
       or (u == "player" and (min~=max or ma > 0 or combat == 1)) and min
       or (u == "player" and ma == 0) and "" or ""
 end
-oUF.TagEvents["[ichikhp2]"] = oUF.TagEvents["[perpp]"]
-oUF.Tags["[ichikhp2]"] = function(u)
+oUF.TagEvents['ichikhp2'] = oUF.TagEvents['perpp']
+oUF.Tags['ichikhp2'] = function(u)
   local min, max = UnitHealth(u), UnitHealthMax(u)
   local d = floor(min/max*100)
   return   (not UnitIsConnected(u) or UnitIsDead(u) or UnitIsGhost(u)) and ""
       or (d < 100 ) and d.."%"
       or ""
 end
-oUF.TagEvents["[ichikpp]"] = oUF.TagEvents["[curpp]"]
-oUF.Tags["[ichikpp]"] = function(u)
+oUF.TagEvents['ichikpp'] = oUF.TagEvents['curpp']
+oUF.Tags['ichikpp'] = function(u)
   local min = UnitMana(u)
   local _, ptype = UnitPowerType(u)
   local color = colors.power[ptype]
@@ -104,8 +103,8 @@ oUF.Tags["[ichikpp]"] = function(u)
       or format(min .. "|cff%02x%02x%02x .|r", color[1]*255, color[2]*255, color[3]*255)
 end
 
-oUF.TagEvents["[ichiknamev]"] = oUF.TagEvents["[name]"]
-oUF.Tags["[ichiknamev]"] = function(u, r, realUnit)
+oUF.TagEvents['ichiknamev'] = oUF.TagEvents['name']
+oUF.Tags['ichiknamev'] = function(u, r, realUnit)
   return UnitName(realUnit or u or r)
 end
 
@@ -322,30 +321,30 @@ local CreateEnchantTimer = function(self, icons)
 	end
 end
 
-local function createAura(self, icon, icons, index, debuff)
-	icon.cd.noOCC = true
-	icon.cd.noCooldownCount = true
-	icons.disableCooldown = true
+local function createAura(auras, button)
+	button.cd.noOCC = true
+	button.cd.noCooldownCount = true
+	auras.disableCooldown = true
 	
-	icon.count:SetFont(fontb, 14, 'THINOUTLINE')
-	icon.count:SetPoint("BOTTOMRIGHT", icon, 2, -2)
-	icon.count:SetTextColor(0.8, 0.8, 0.8)
+	button.count:SetFont(fontb, 14, 'THINOUTLINE')
+	button.count:SetPoint("BOTTOMRIGHT", icon, 2, -2)
+	button.count:SetTextColor(0.8, 0.8, 0.8)
 	
-	icon.time = icon:CreateFontString(nil, 'OVERLAY')
-	icon.time:SetFont(fontb, 14, 'THINOUTLINE')
-	icon.time:SetPoint('BOTTOM', icon, 'TOP', 0, -8)
-	icon.time:SetJustifyH('CENTER')
-	icon.time:SetVertexColor(1.0,1.0,1.0)
+	button.time = button:CreateFontString(nil, 'OVERLAY')
+	button.time:SetFont(fontb, 14, 'THINOUTLINE')
+	button.time:SetPoint('BOTTOM', button, 'TOP', 0, -8)
+	button.time:SetJustifyH('CENTER')
+	button.time:SetVertexColor(1.0,1.0,1.0)
 		
-	icons.showDebuffType = true
-	icon.icon:SetTexCoord(0.0,1.0,0.0,1.0)  
+	button.showDebuffType = true
+	button.icon:SetTexCoord(0.0,1.0,0.0,1.0)  
 	
-	icon.overlay:SetTexture(border)
-	icon.overlay:SetTexCoord(0.0, 1.0, 0.0, 1.0)
-	icon.overlay.Hide = function(self) self:SetVertexColor(0.3, 0.3, 0.3) end
+	button.overlay:SetTexture(border)
+	button.overlay:SetTexCoord(0.0, 1.0, 0.0, 1.0)
+	button.overlay.Hide = function(self) self:SetVertexColor(0.3, 0.3, 0.3) end
 end
 
-local function updateAura(self, icons, unit, icon, index, offset, filter, isDebuff, duration, timeLeft)
+local function updateAura(icons, unit, icon, index, offset, filter, isDebuff, duration, timeLeft)
 	local _, _, _, _, _, duration, expirationTime, unitCaster, _ = UnitAura(unit, index, icon.filter)
 	if unitCaster == "player" or unitCaster == "pet" or unitCaster == "vehicle" then
 		if icon.debuff then
@@ -376,8 +375,8 @@ local sort = function(a, b)
        return a.timeLeft > b.timeLeft
 end
  
-local preAuraSetPosition = function(self, icon, max)
-	table.sort(icon, function(a,b) return a.timeLeft > b.timeLeft end)
+local preAuraSetPosition = function(element)
+	table.sort(element, sort)
 end
 
 local function updateAuraTrackerTime(self, elapsed)
@@ -575,7 +574,7 @@ local function styleFunc(self, unit)
         lag:SetPoint("BOTTOMRIGHT",cb,0, -12)
         cb.Lag = lag
 		self.PostCastStart = PostCastStart
-		self.OnCastbarUpdate = OnCastbarUpdate
+		self.OnUpdate = OnCastbarUpdate
 		self.PostChannelStart = PostChannelStart
 		self:RegisterEvent("UNIT_SPELLCAST_SENT", UNIT_SPELLCAST_SENT)
       end    
@@ -681,6 +680,9 @@ local function styleFunc(self, unit)
 		self.Buffs.spacing = 2
 		self.Buffs.num = 40
 		self.Buffs.disableCooldown = false
+		self.Buffs.PostCreateIcon = createAura
+		self.Buffs.PostUpdateIcon = updateAura
+		self.Buffs.PreSetPosition = preAuraSetPosition
 	end
 		
  	if (unit == "player" or self:GetParent():GetName():match'oUF_Party') then
@@ -703,10 +705,12 @@ local function styleFunc(self, unit)
     self.Auras.spacing = 1
     self.Auras.initialAnchor = "BOTTOMLEFT"
     self.Auras["growth-y"] = "UP"
+	self.Auras.PostCreateIcon = createAura
+	self.Auras.PostUpdateIcon = updateAura
     if(unit == "target") then      
-      self.CPoints = SetFontString(self.Health, fontn, 16, "THINOUTLINE")
-      self.CPoints:SetPoint("RIGHT", self.Health, -2, 0)
-      self.CPoints.unit = "player"
+      local cpoints = SetFontString(self.Health, fontn, 16, "THINOUTLINE")
+      cpoints:SetPoint("RIGHT", self.Health, -2, 0)
+      self:Tag(cpoints, '[cpoints]')
       self.Auras:SetHeight(30)
 	  self.Auras.numBuffs = 7
 	  self.Auras.numDebuffs = 7
@@ -718,7 +722,7 @@ local function styleFunc(self, unit)
 		self.Auras:SetHeight(30)
 		self.Auras:SetWidth(width)
 		self.Auras.size = self.Auras:GetHeight()
-		self.PreAuraSetPosition = preAuraSetPosition
+		self.Auras.PreSetPosition = preAuraSetPosition
     end  
     if(unit == "pet") then
       self.Power.colorPower = true
@@ -731,10 +735,6 @@ local function styleFunc(self, unit)
       self.Auras.size = 25
       self.Auras.buffFilter = "HELPFUL|RAID"
       self.Auras.num = 4
-
-      self.CPoints = SetFontString(self.Health, fontn, 14, "THINOUTLINE")
-      self.CPoints:SetPoint("LEFT", self.Health, 2, 0)
-      self.CPoints.unit = "pet"
     end
     if(unit == "targettarget") then
       self.Auras:SetHeight(30)
@@ -844,8 +844,6 @@ local function styleFunc(self, unit)
   	  end
 	end)
   end  
-  self.PostCreateAuraIcon = createAura
-  self.PostUpdateAuraIcon = updateAura
   if(unit == "focustarget") then
     self.Health:SetHeight(13)
     self.Power:Hide()
@@ -867,11 +865,12 @@ local function styleFunc(self, unit)
 end
 
 oUF:RegisterStyle("ichik", styleFunc)
+oUF:Factory(function(self)
 oUF:SetActiveStyle("ichik")
 oUF:Spawn("player", "oUF_ichik_player"):SetPoint("TOP", UIParent, "BOTTOM", -300, 419)
 oUF:Spawn("target", "oUF_ichik_target"):SetPoint("TOP", UIParent, "BOTTOM", 0, 300)
 
- oUF:Spawn("targettarget", "oUF_ichik_targett"):SetPoint("LEFT", "oUF_ichik_target", "RIGHT", 7, 0)
+oUF:Spawn("targettarget", "oUF_ichik_targettarget"):SetPoint("LEFT", "oUF_ichik_target", "RIGHT", 7, 0)
 oUF:Spawn("pet", "oUF_ichik_pet"):SetPoint("RIGHT", "oUF_ichik_player", "LEFT", -7, 0)
 
 oUF:Spawn("focus", "oUF_ichik_focus"):SetPoint("RIGHT", UIParent, -55, 0)
@@ -890,17 +889,21 @@ end
 
 for i, v in ipairs(boss) do v:Show() end
 
-local party = oUF:Spawn("header", "oUF_Party")
-party:SetPoint("TOPRIGHT","oUF_ichik_pet", 0, 75)
-party:SetManyAttributes("showParty", true, "yOffset", 103, "showPlayer", false)
+local party = oUF:SpawnHeader("oUF_Party", nil, 'raid,party',
+"showParty", true, 
+"yOffset", 103, 
+"showPlayer", false)
+party:SetPoint("TOPRIGHT","oUF_ichik_pet",0,75)
 if ppets then
   party:SetAttribute("template", "oUF_ichikPPets")
 end
-if IsAddOnLoaded("oUF_MoveableFrames") then
-  oUF_MoveableFrames_HEADER("oUF_Party", PartyAnchor, 0, 75)
-end
 
-local partyToggle = CreateFrame("Frame")
+--[[if IsAddOnLoaded("oUF_MoveableFrames") then
+  oUF_MoveableFrames_HEADER("oUF_Party", PartyAnchor, 0, 75)
+end]]--
+end)
+
+--[[local partyToggle = CreateFrame("Frame")
 partyToggle:RegisterEvent("PLAYER_LOGIN")
 partyToggle:RegisterEvent("RAID_ROSTER_UPDATE")
 partyToggle:RegisterEvent("PARTY_LEADER_CHANGED")
@@ -911,9 +914,9 @@ partyToggle:SetScript("OnEvent", function(self)
   else
     self:UnregisterEvent("PLAYER_REGEN_ENABLED")
     if (partyraid == true and GetNumRaidMembers() <=5 or GetNumRaidMembers() == 0) then
-      party:Show()
+      --party:Show()
     else
-      party:Hide()
+      --party:Hide()
     end
   end
-end)
+end)]]--
