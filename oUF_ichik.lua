@@ -1,4 +1,3 @@
-local _, class = UnitClass("player")
 local texture = [=[Interface\AddOns\oUF_ichik\media\minimalist]=]
 local debufftex = [=[Interface\AddOns\oUF_ichik\media\dh]=]
 local border = [=[Interface\AddOns\oUF_ichik\media\border]=]
@@ -874,7 +873,7 @@ oUF:Spawn("target", "oUF_ichik_target"):SetPoint("TOP", UIParent, "BOTTOM", 0, 3
  oUF:Spawn("targettarget", "oUF_ichik_targett"):SetPoint("LEFT", "oUF_ichik_target", "RIGHT", 7, 0)
 oUF:Spawn("pet", "oUF_ichik_pet"):SetPoint("RIGHT", "oUF_ichik_player", "LEFT", -7, 0)
 
-oUF:Spawn("focus", "oUF_ichik_focus"):SetPoint("RIGHT", UIParent, -55, 0)
+oUF:Spawn("focus", "oUF_ichik_focus"):SetPoint("LEFT", "oUF_ichik_targett", "RIGHT", 95, 55)
 oUF:Spawn("focustarget", "oUF_ichik_focust"):SetPoint("TOP", "oUF_ichik_focus", 0, 18)
 
 local boss = {}
