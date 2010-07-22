@@ -327,7 +327,7 @@ local function createAura(self, icon, icons, index, debuff)
 	icons.disableCooldown = true
 	
 	icon.count:SetFont(fontb, 14, 'THINOUTLINE')
-	icon.count:SetPoint("BOTTOMRIGHT", icon, 2, -2)
+	icon.count:SetPoint("BOTTOMRIGHT", icon, 2, -1)
 	icon.count:SetTextColor(0.8, 0.8, 0.8)
 	
 	icon.time = icon:CreateFontString(nil, 'OVERLAY')
