@@ -9,5 +9,9 @@
 oUF_ichikPPets.xml
 oUF_ichikMt.xml
 config_RaidDebuffs.lua
-oUF_ichik.lua
-oUF_ichikR.lua
+core.lua
+cfg.lua
+lib.lua
+castbar.lua
+tags.lua
+--oUF_ichikR.lua
